@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/atesso-design-system-bbf0b0f9-c767-4aba-9b60-2015850c175c/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/atesso-design-system-bbf0b0f9-c767-4aba-9b60-2015850c175c/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/atesso-design-system-bbf0b0f9-c767-4aba-9b60-2015850c175c/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/atesso-design-system-bbf0b0f9-c767-4aba-9b60-2015850c175c/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/atesso-design-system-bbf0b0f9-c767-4aba-9b60-2015850c175c/tokens/base.css">
+  <link rel="stylesheet" href="_ds/atesso-design-system-bbf0b0f9-c767-4aba-9b60-2015850c175c/styles.css">
+  <script src="_ds/atesso-design-system-bbf0b0f9-c767-4aba-9b60-2015850c175c/_ds_bundle.js"></script>
+  <style>
+    /* Wantworth palette override: warm gold/mustard, not neon, replaces the DS teal for this product */
+    :root {
+      --gold-50: #FBF7E9;
+      --gold-100: #F5ECC9;
+      --gold-200: #EBDA9C;
+      --gold-300: #DFC470;
+      --gold-400: #D1AC4A;
+      --gold-500: #BE9530;
+      --gold-600: #A57D22;
+      --gold-700: #83621B;
+      --gold-800: #634A16;
+      --gold-900: #453412;
+      --color-primary: var(--gold-400);
+      --color-primary-hover: var(--gold-500);
+      --color-primary-active: var(--gold-600);
+      --color-primary-subtle: var(--gold-100);
+      --color-on-primary: var(--gray-900);
+      --surface-brand: var(--gold-400);
+      --text-link: var(--gold-700);
+      --focus-ring: 0 0 0 3px rgba(190, 149, 48, 0.45);
+      --shadow-brand: 0 10px 24px rgba(190, 149, 48, 0.32);
+    }
+    body { margin: 0; background: var(--surface-page); }
+    a { color: var(--text-link); }
+    a:hover { color: var(--gold-800); }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column; font-family: var(--font-sans); background: var(--surface-page);">
+
+  <!-- Landing header -->
+  <sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+    <header style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); padding: var(--space-5) clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--border-subtle);">
+      <div style="font-family: var(--font-display); font-weight: var(--fw-black); text-transform: uppercase; letter-spacing: var(--tracking-tight); font-size: var(--text-xl); color: var(--text-strong); cursor: pointer;" onClick="{{ goLanding }}">Wantworth</div>
+      <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="primary" onClick="{{ goHome }}">Get started</x-import>
+    </header>
+  </sc-if>
+
+  <!-- App header -->
+  <sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+    <header style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); padding: var(--space-4) clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--border-subtle); position: sticky; top: 0; background: rgba(247,248,248,0.9); backdrop-filter: blur(8px); z-index: 10;">
+      <div style="display: flex; align-items: center; gap: clamp(16px, 4vw, 40px); flex-wrap: wrap;">
+        <div style="font-family: var(--font-display); font-weight: var(--fw-black); text-transform: uppercase; letter-spacing: var(--tracking-tight); font-size: var(--text-lg); color: var(--text-strong); cursor: pointer;" onClick="{{ goHome }}">Wantworth</div>
+        <nav style="display: flex; gap: var(--space-5);">
+          <span onClick="{{ goHome }}" style="{{ navHomeStyle }}">Home</span>
+          <span onClick="{{ goHistory }}" style="{{ navHistoryStyle }}">History</span>
+        </nav>
+      </div>
+      <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="primary" size="sm" onClick="{{ goNewCall }}">Start a call</x-import>
+    </header>
+  </sc-if>
+
+  <main style="flex: 1; width: 100%;">
+
+    <!-- LANDING -->
+    <sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+      <section style="max-width: 720px; margin: 0 auto; padding: clamp(48px, 10vw, 96px) clamp(20px, 5vw, 24px) clamp(32px, 6vw, 56px); text-align: center;">
+        <div style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-3);">Consumer time, recovered</div>
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-black); text-transform: uppercase; letter-spacing: var(--tracking-tight); font-size: clamp(2rem, 6vw, var(--text-3xl)); color: var(--text-strong); margin: 0 0 var(--space-5); line-height: var(--leading-tight);">Wasted hold time.<br>Actual compensation.</h1>
+        <p style="font-size: var(--text-lg); color: var(--text-body); margin: 0 0 var(--space-7); line-height: var(--leading-relaxed);">Merge Wantworth into your next customer service call. We record it with disclosed consent, timestamp what happened, and package the evidence to help you file a small claim.</p>
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,52px" variant="primary" size="lg" onClick="{{ goHome }}">Get started</x-import>
+      </section>
+
+      <section style="max-width: 1000px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 24px) clamp(64px, 10vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5);">
+        <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-6);">
+          <div style="font-family: var(--font-display); font-weight: var(--fw-extra); font-size: var(--text-md); text-transform: uppercase; color: var(--text-strong); margin-bottom: var(--space-2);">1. Merge in</div>
+          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0; line-height: var(--leading-relaxed);">Add our number to your call with your phone's normal merge-call feature. Everyone hears a recording disclosure.</p>
+        </div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-6);">
+          <div style="font-family: var(--font-display); font-weight: var(--fw-extra); font-size: var(--text-md); text-transform: uppercase; color: var(--text-strong); margin-bottom: var(--space-2);">2. We log it</div>
+          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0; line-height: var(--leading-relaxed);">Duration, company, and a hash of the recording are saved the moment the call ends. Nothing after is edited.</p>
+        </div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-6);">
+          <div style="font-family: var(--font-display); font-weight: var(--fw-extra); font-size: var(--text-md); text-transform: uppercase; color: var(--text-strong); margin-bottom: var(--space-2);">3. You file</div>
+          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0; line-height: var(--leading-relaxed);">Send the evidence file to PettyLawsuit and start a small-claims filing in a few taps.</p>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- HOME -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 880px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: 0 0 var(--space-6); letter-spacing: var(--tracking-tight);">Ready when you are</h1>
+
+        <div style="background: var(--surface-brand); border-radius: var(--radius-xl); padding: var(--space-6); margin-bottom: var(--space-6); box-shadow: var(--shadow-brand); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5);">
+          <div style="max-width: 420px;">
+            <div style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-on-primary); opacity: 0.75; margin-bottom: var(--space-2);">New recording</div>
+            <div style="font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--color-on-primary);">Merge us into your support call and we'll log everything.</div>
+          </div>
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,48px" variant="secondary" onClick="{{ goNewCall }}">Start a call</x-import>
+        </div>
+
+        <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-7); flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 140px; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); text-align: center;">
+            <div style="font-family: var(--font-display); font-weight: var(--fw-black); font-size: var(--text-2xl); color: var(--text-strong);">{{ stats.logged }}</div>
+            <div style="font-size: var(--text-xs); color: var(--text-muted);">Calls logged</div>
+          </div>
+          <div style="flex: 1; min-width: 140px; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); text-align: center;">
+            <div style="font-family: var(--font-display); font-weight: var(--fw-black); font-size: var(--text-2xl); color: var(--text-strong);">{{ stats.filed }}</div>
+            <div style="font-size: var(--text-xs); color: var(--text-muted);">Claims filed</div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3);">
+          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--text-muted); font-family: var(--font-mono);">Recent activity</div>
+          <span onClick="{{ goHistory }}" style="font-size: var(--text-xs); color: var(--text-link); cursor: pointer;">See all</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+          <sc-for list="{{ recentCalls }}" as="c" hint-placeholder-count="2">
+            <div onClick="{{ c.open }}" style="display: flex; align-items: center; justify-content: space-between; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); cursor: pointer;">
+              <div>
+                <div style="font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-strong);">{{ c.company }}</div>
+                <div style="font-size: var(--text-xs); color: var(--text-muted);">{{ c.dateLabel }} &middot; {{ c.durationLabel }}</div>
+              </div>
+              <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,24px" tone="{{ c.tone }}">{{ c.statusLabel }}</x-import>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- NEW CALL: identify company -->
+    <sc-if value="{{ isNewId }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <span onClick="{{ goHome }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">&lsaquo; Cancel</span>
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: var(--space-3) 0 var(--space-2); letter-spacing: var(--tracking-tight);">Who are you calling?</h1>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">We'll use this to identify the company on your evidence file.</p>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-7);">
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Input" hint-size="100%,72px" label="Company name" placeholder="e.g. Comcast Xfinity" value="{{ companyName }}" onChange="{{ onCompanyNameChange }}"></x-import>
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Input" hint-size="100%,72px" label="Support number" placeholder="e.g. 1 (800) 934-6489" hint="Matched from our directory of published support lines" value="{{ companyNumber }}" onChange="{{ onCompanyNumberChange }}"></x-import>
+        </div>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" disabled="{{ idDisabled }}" onClick="{{ goMerge }}">Continue</x-import>
+      </section>
+    </sc-if>
+
+    <!-- NEW CALL: merge instructions -->
+    <sc-if value="{{ isNewMerge }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <span onClick="{{ goNewCall }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">&lsaquo; Back</span>
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: var(--space-3) 0 var(--space-2); letter-spacing: var(--tracking-tight);">Merge in Wantworth</h1>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">While still on with {{ companyName }}, add this call using your phone's merge feature.</p>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-6);">
+          <div style="display: flex; gap: var(--space-3);">
+            <div style="width: 24px; height: 24px; border-radius: var(--radius-circle); background: var(--surface-brand); color: var(--color-on-primary); font-size: var(--text-xs); font-weight: var(--fw-bold); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: var(--text-sm); color: var(--text-body); padding-top: 2px;">Tap "add call" on your phone's keypad screen</div>
+          </div>
+          <div style="display: flex; gap: var(--space-3);">
+            <div style="width: 24px; height: 24px; border-radius: var(--radius-circle); background: var(--surface-brand); color: var(--color-on-primary); font-size: var(--text-xs); font-weight: var(--fw-bold); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: var(--text-sm); color: var(--text-body); padding-top: 2px;">Dial the number below, then tap "merge calls"</div>
+          </div>
+          <div style="display: flex; gap: var(--space-3);">
+            <div style="width: 24px; height: 24px; border-radius: var(--radius-circle); background: var(--surface-brand); color: var(--color-on-primary); font-size: var(--text-xs); font-weight: var(--fw-bold); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: var(--text-sm); color: var(--text-body); padding-top: 2px;">You'll hear a short recording notice, then we start logging</div>
+          </div>
+        </div>
+
+        <div style="background: var(--surface-sunken); border: 1px dashed var(--border-strong); border-radius: var(--radius-lg); padding: var(--space-5); text-align: center; margin-bottom: var(--space-6);">
+          <div style="font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--text-muted); font-family: var(--font-mono); margin-bottom: var(--space-2);">Wantworth merge number</div>
+          <div style="font-family: var(--font-mono); font-size: var(--text-xl); font-weight: var(--fw-semibold); color: var(--text-strong); letter-spacing: 0.02em;">(628) 555-0199</div>
+        </div>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" onClick="{{ goRecording }}">I've merged the call</x-import>
+      </section>
+    </sc-if>
+
+    <!-- NEW CALL: recording live -->
+    <sc-if value="{{ isNewRecording }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,24px" tone="danger" dot="{{ true }}">Recording</x-import>
+          <div style="font-family: var(--font-mono); font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--text-strong);">{{ timerDisplay }}</div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 3px; height: 48px; margin-bottom: var(--space-6);">
+          <div style="flex:1; height: 30%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 65%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 90%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 45%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 70%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 25%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 55%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 80%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 40%; background: var(--color-primary); border-radius: 2px;"></div>
+          <div style="flex:1; height: 60%; background: var(--color-primary); border-radius: 2px;"></div>
+        </div>
+
+        <div style="font-size: var(--text-sm); color: var(--text-strong); font-weight: var(--fw-medium);">{{ companyName }}</div>
+        <div style="font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-6);">{{ companyNumber }}</div>
+
+        <div style="background: var(--surface-sunken); border-radius: var(--radius-lg); padding: var(--space-4); font-size: var(--text-xs); color: var(--text-body); font-style: italic; margin-bottom: var(--space-7);">"This call is being recorded by Wantworth for consumer protection purposes."</div>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="danger" block="{{ true }}" onClick="{{ goEndCall }}">End &amp; save call</x-import>
+      </section>
+    </sc-if>
+
+    <!-- NEW CALL: ended -->
+    <sc-if value="{{ isNewEnded }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: var(--space-7);">
+          <div style="width: 64px; height: 64px; border-radius: var(--radius-circle); background: var(--color-primary-subtle); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-5); font-size: 28px; color: var(--color-primary-active);">&#10003;</div>
+          <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-xl); color: var(--text-strong); margin: 0 0 var(--space-2); letter-spacing: var(--tracking-tight);">Evidence secured</h1>
+          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0;">Your call was recorded, hashed, and saved.</p>
+        </div>
+
+        <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-7);">
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Company</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.company }}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Duration</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.durationLabel }}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Recorded</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.dateLabel }}</span></div>
+        </div>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" onClick="{{ goEvidence }}">View evidence file</x-import>
+      </section>
+    </sc-if>
+
+    <!-- EVIDENCE DETAIL -->
+    <sc-if value="{{ isEvidence }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <span onClick="{{ goHistory }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">&lsaquo; History</span>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin: var(--space-3) 0 var(--space-2); gap: var(--space-3); flex-wrap: wrap;">
+          <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-lg); color: var(--text-strong); margin: 0; letter-spacing: var(--tracking-tight);">Evidence {{ activeCall.evidenceId }}</h1>
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,24px" tone="success">Hash verified</x-import>
+        </div>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-5);">Original recording, untouched since capture.</p>
+
+        <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5);">
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Call SID</span><span style="color: var(--text-strong); font-family: var(--font-mono); font-size: var(--text-xs);">{{ activeCall.sid }}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">SHA-256</span><span style="color: var(--text-strong); font-family: var(--font-mono); font-size: var(--text-xs);">{{ activeCall.hash }}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Company</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.company }}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Duration</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.durationLabel }}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Status</span><x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,22px" tone="{{ activeCall.tone }}">{{ activeCall.statusLabel }}</x-import></div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+          <sc-if value="{{ activeCall.canFile }}" hint-placeholder-val="{{ true }}">
+            <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" onClick="{{ goClaim }}">File a claim</x-import>
+          </sc-if>
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="outline" block="{{ true }}" onClick="{{ exportEvidence }}">Export evidence</x-import>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- FILE CLAIM -->
+    <sc-if value="{{ isClaim }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: var(--space-6);">
+          <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-xl); color: var(--text-strong); margin: 0 0 var(--space-2); letter-spacing: var(--tracking-tight);">Ready to file</h1>
+          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0;">We'll send your evidence file to PettyLawsuit to start your small-claims filing.</p>
+        </div>
+
+        <div style="background: var(--surface-sunken); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-7);">
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Evidence file</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.evidenceId }}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Filing against</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.company }}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Handled by</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">PettyLawsuit</span></div>
+        </div>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" onClick="{{ fileClaim }}">Continue to PettyLawsuit</x-import>
+        <div style="text-align: center; font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);">You'll leave Wantworth to finish filing</div>
+      </section>
+    </sc-if>
+
+    <!-- HISTORY -->
+    <sc-if value="{{ isHistory }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 720px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: 0 0 var(--space-6); letter-spacing: var(--tracking-tight);">Call history</h1>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+          <sc-for list="{{ allCalls }}" as="c" hint-placeholder-count="3">
+            <div onClick="{{ c.open }}" style="display: flex; align-items: center; justify-content: space-between; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); cursor: pointer; gap: var(--space-3); flex-wrap: wrap;">
+              <div>
+                <div style="font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-strong);">{{ c.company }}</div>
+                <div style="font-size: var(--text-xs); color: var(--text-muted);">{{ c.dateLabel }} &middot; {{ c.durationLabel }} &middot; {{ c.number }}</div>
+              </div>
+              <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,24px" tone="{{ c.tone }}">{{ c.statusLabel }}</x-import>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+  </main>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+function makeHex(len) {
+  var out = '';
+  var chars = '0123456789abcdef';
+  for (var i = 0; i < len; i++) out += chars[Math.floor(Math.random() * 16)];
+  return out;
+}
+
+function fmtDuration(totalSeconds) {
+  var m = Math.floor(totalSeconds / 60);
+  var s = totalSeconds % 60;
+  return (m < 10 ? '0' + m : '' + m) + ':' + (s < 10 ? '0' + s : '' + s);
+}
+
+function fmtDate(ts) {
+  var d = new Date(ts);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var h = d.getHours();
+  var ampm = h >= 12 ? 'PM' : 'AM';
+  var h12 = h % 12; if (h12 === 0) h12 = 12;
+  var min = d.getMinutes();
+  return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' \u00b7 ' + h12 + ':' + (min < 10 ? '0' + min : '' + min) + ' ' + ampm;
+}
+
+var STORAGE_KEY = 'wantworth_calls_v1';
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      route: 'landing',
+      companyName: '',
+      companyNumber: '',
+      seconds: 0,
+      calls: this.loadCalls(),
+      activeCallId: null
+    };
+    this.timerId = null;
+    this.goLanding = this.goLanding.bind(this);
+    this.goHome = this.goHome.bind(this);
+    this.goHistory = this.goHistory.bind(this);
+    this.goNewCall = this.goNewCall.bind(this);
+    this.goMerge = this.goMerge.bind(this);
+    this.goRecording = this.goRecording.bind(this);
+    this.goEndCall = this.goEndCall.bind(this);
+    this.goEvidence = this.goEvidence.bind(this);
+    this.goClaim = this.goClaim.bind(this);
+    this.fileClaim = this.fileClaim.bind(this);
+    this.exportEvidence = this.exportEvidence.bind(this);
+    this.onCompanyNameChange = this.onCompanyNameChange.bind(this);
+    this.onCompanyNumberChange = this.onCompanyNumberChange.bind(this);
+  }
+
+  componentWillUnmount() {
+    if (this.timerId) clearInterval(this.timerId);
+  }
+
+  loadCalls() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    var now = Date.now();
+    return [
+      { id: 'seed-1', company: 'Comcast Xfinity', number: '1 (800) 934-6489', durationSeconds: 23 * 60 + 14, timestamp: now - 86400000, sid: 'CA' + makeHex(4) + '...' + makeHex(4), hash: makeHex(6) + '...' + makeHex(4), status: 'secured' },
+      { id: 'seed-2', company: 'Delta Airlines', number: '1 (800) 221-1212', durationSeconds: 41 * 60 + 2, timestamp: now - 7 * 86400000, sid: 'CA' + makeHex(4) + '...' + makeHex(4), hash: makeHex(6) + '...' + makeHex(4), status: 'filed' }
+    ];
+  }
+
+  saveCalls(calls) {
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(calls)); } catch (e) {}
+  }
+
+  goLanding() { this.setState({ route: 'landing' }); }
+  goHome() { this.setState({ route: 'home' }); }
+  goHistory() { this.setState({ route: 'history' }); }
+  goNewCall() { this.setState({ route: 'newcall-id', companyName: '', companyNumber: '' }); }
+  goMerge() { this.setState({ route: 'newcall-merge' }); }
+
+  goRecording() {
+    var self = this;
+    this.setState({ route: 'newcall-recording', seconds: 0 });
+    if (this.timerId) clearInterval(this.timerId);
+    this.timerId = setInterval(function () {
+      self.setState(function (s) { return { seconds: s.seconds + 1 }; });
+    }, 1000);
+  }
+
+  goEndCall() {
+    if (this.timerId) { clearInterval(this.timerId); this.timerId = null; }
+    var id = 'call-' + Date.now();
+    var record = {
+      id: id,
+      company: this.state.companyName || 'Unknown company',
+      number: this.state.companyNumber || '\u2014',
+      durationSeconds: this.state.seconds,
+      timestamp: Date.now(),
+      sid: 'CA' + makeHex(4) + '...' + makeHex(4),
+      hash: makeHex(6) + '...' + makeHex(4),
+      status: 'secured'
+    };
+    var calls = [record].concat(this.state.calls);
+    this.saveCalls(calls);
+    this.setState({ calls: calls, activeCallId: id, route: 'newcall-ended' });
+  }
+
+  goEvidence() { this.setState({ route: 'evidence' }); }
+  goClaim() { this.setState({ route: 'claim' }); }
+
+  fileClaim() {
+    var id = this.state.activeCallId;
+    var calls = this.state.calls.map(function (c) {
+      return c.id === id ? Object.assign({}, c, { status: 'filed' }) : c;
+    });
+    this.saveCalls(calls);
+    this.setState({ calls: calls, route: 'history' });
+  }
+
+  exportEvidence() {
+    var call = this.findCall(this.state.activeCallId);
+    if (!call) return;
+    try {
+      var blob = new Blob([JSON.stringify(call, null, 2)], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'wantworth-evidence-' + call.id + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (e) {}
+  }
+
+  onCompanyNameChange(e) { this.setState({ companyName: e.target.value }); }
+  onCompanyNumberChange(e) { this.setState({ companyNumber: e.target.value }); }
+
+  findCall(id) {
+    var list = this.state.calls;
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+
+  decorateCall(c) {
+    var self = this;
+    var tone = c.status === 'filed' ? 'brand' : 'success';
+    var label = c.status === 'filed' ? 'Claim filed' : 'Evidence secured';
+    return {
+      id: c.id,
+      company: c.company,
+      number: c.number,
+      durationLabel: fmtDuration(c.durationSeconds),
+      dateLabel: fmtDate(c.timestamp),
+      sid: c.sid,
+      hash: c.hash,
+      evidenceId: '#WW-' + c.id.replace(/[^0-9]/g, '').slice(-5),
+      tone: tone,
+      statusLabel: label,
+      canFile: c.status !== 'filed',
+      open: function () { self.setState({ activeCallId: c.id, route: 'evidence' }); }
+    };
+  }
+
+  renderVals() {
+    var s = this.state;
+    var route = s.route;
+    var calls = s.calls;
+    var active = this.findCall(s.activeCallId);
+    var logged = calls.length;
+    var filed = calls.filter(function (c) { return c.status === 'filed'; }).length;
+
+    var navActiveStyle = 'font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-strong); cursor: pointer;';
+    var navIdleStyle = 'font-size: var(--text-sm); font-weight: var(--fw-regular); color: var(--text-body); cursor: pointer;';
+
+    return {
+      isLanding: route === 'landing',
+      isApp: route !== 'landing',
+      isHome: route === 'home',
+      isNewId: route === 'newcall-id',
+      isNewMerge: route === 'newcall-merge',
+      isNewRecording: route === 'newcall-recording',
+      isNewEnded: route === 'newcall-ended',
+      isEvidence: route === 'evidence',
+      isClaim: route === 'claim',
+      isHistory: route === 'history',
+      navHomeStyle: route === 'home' ? navActiveStyle : navIdleStyle,
+      navHistoryStyle: route === 'history' ? navActiveStyle : navIdleStyle,
+      companyName: s.companyName,
+      companyNumber: s.companyNumber,
+      onCompanyNameChange: this.onCompanyNameChange,
+      onCompanyNumberChange: this.onCompanyNumberChange,
+      idDisabled: !(s.companyName.trim() && s.companyNumber.trim()),
+      timerDisplay: fmtDuration(s.seconds),
+      stats: { logged: logged, filed: filed },
+      recentCalls: calls.slice(0, 2).map(function (c) { return this.decorateCall(c); }, this),
+      allCalls: calls.map(function (c) { return this.decorateCall(c); }, this),
+      activeCall: active ? this.decorateCall(active) : { company: '', durationLabel: '', dateLabel: '', sid: '', hash: '', evidenceId: '', tone: 'success', statusLabel: '', canFile: false },
+      goLanding: this.goLanding,
+      goHome: this.goHome,
+      goHistory: this.goHistory,
+      goNewCall: this.goNewCall,
+      goMerge: this.goMerge,
+      goRecording: this.goRecording,
+      goEndCall: this.goEndCall,
+      goEvidence: this.goEvidence,
+      goClaim: this.goClaim,
+      fileClaim: this.fileClaim,
+      exportEvidence: this.exportEvidence
+    };
+  }
+}
+
+</script>
+</body>
+</html>
