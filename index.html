@@ -51,7 +51,7 @@
   <sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
     <header style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); padding: var(--space-5) clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--border-subtle);">
       <div style="font-family: var(--font-display); font-weight: var(--fw-black); text-transform: uppercase; letter-spacing: var(--tracking-tight); font-size: var(--text-xl); color: var(--text-strong); cursor: pointer;" onClick="{{ goLanding }}">Wantworth</div>
-      <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="primary" onClick="{{ goHome }}">Get started</x-import>
+      <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="primary" onClick="{{ goApp }}">Get started</x-import>
     </header>
   </sc-if>
 
@@ -65,7 +65,10 @@
           <span onClick="{{ goHistory }}" style="{{ navHistoryStyle }}">History</span>
         </nav>
       </div>
-      <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="primary" size="sm" onClick="{{ goNewCall }}">Start a call</x-import>
+      <div style="display: flex; align-items: center; gap: var(--space-4);">
+        <span onClick="{{ logout }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">Log out</span>
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="primary" size="sm" onClick="{{ goNewCall }}">Start a call</x-import>
+      </div>
     </header>
   </sc-if>
 
@@ -77,7 +80,7 @@
         <div style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-3);">Consumer time, recovered</div>
         <h1 style="font-family: var(--font-display); font-weight: var(--fw-black); text-transform: uppercase; letter-spacing: var(--tracking-tight); font-size: clamp(2rem, 6vw, var(--text-3xl)); color: var(--text-strong); margin: 0 0 var(--space-5); line-height: var(--leading-tight);">Wasted hold time.<br>Actual compensation.</h1>
         <p style="font-size: var(--text-lg); color: var(--text-body); margin: 0 0 var(--space-7); line-height: var(--leading-relaxed);">Merge Wantworth into your next customer service call. We record it with disclosed consent, timestamp what happened, and package the evidence to help you file a small claim.</p>
-        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,52px" variant="primary" size="lg" onClick="{{ goHome }}">Get started</x-import>
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,52px" variant="primary" size="lg" onClick="{{ goApp }}">Get started</x-import>
       </section>
 
       <section style="max-width: 1000px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 24px) clamp(64px, 10vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5);">
@@ -93,6 +96,44 @@
           <div style="font-family: var(--font-display); font-weight: var(--fw-extra); font-size: var(--text-md); text-transform: uppercase; color: var(--text-strong); margin-bottom: var(--space-2);">3. You file</div>
           <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0; line-height: var(--leading-relaxed);">Send the evidence file to PettyLawsuit and start a small-claims filing in a few taps.</p>
         </div>
+      </section>
+    </sc-if>
+
+    <!-- AUTH: phone -->
+    <sc-if value="{{ isPhone }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 440px; margin: 0 auto; padding: clamp(48px, 10vw, 96px) clamp(20px, 5vw, 24px);">
+        <span onClick="{{ goLanding }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">&lsaquo; Back</span>
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: var(--space-3) 0 var(--space-2); letter-spacing: var(--tracking-tight);">Sign in</h1>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">Enter your mobile number and we'll text you a 6-digit code.</p>
+
+        <div style="margin-bottom: var(--space-4);">
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Input" hint-size="100%,72px" label="Mobile number" placeholder="+1 555 123 4567" value="{{ phone }}" onChange="{{ onPhoneChange }}"></x-import>
+        </div>
+
+        <sc-if value="{{ hasAuthError }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--color-danger, #b3261e); margin-bottom: var(--space-4);">{{ authError }}</div>
+        </sc-if>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" disabled="{{ phoneDisabled }}" onClick="{{ requestOtp }}">{{ phoneBtnLabel }}</x-import>
+      </section>
+    </sc-if>
+
+    <!-- AUTH: otp -->
+    <sc-if value="{{ isOtp }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 440px; margin: 0 auto; padding: clamp(48px, 10vw, 96px) clamp(20px, 5vw, 24px);">
+        <span onClick="{{ goPhone }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">&lsaquo; Back</span>
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: var(--space-3) 0 var(--space-2); letter-spacing: var(--tracking-tight);">Enter code</h1>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">We sent a 6-digit code to {{ phone }}.</p>
+
+        <div style="margin-bottom: var(--space-4);">
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Input" hint-size="100%,72px" label="Verification code" placeholder="000000" value="{{ otpCode }}" onChange="{{ onOtpChange }}"></x-import>
+        </div>
+
+        <sc-if value="{{ hasAuthError }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--color-danger, #b3261e); margin-bottom: var(--space-4);">{{ authError }}</div>
+        </sc-if>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" disabled="{{ otpDisabled }}" onClick="{{ verifyOtp }}">{{ otpBtnLabel }}</x-import>
       </section>
     </sc-if>
 
@@ -124,6 +165,12 @@
           <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--text-muted); font-family: var(--font-mono);">Recent activity</div>
           <span onClick="{{ goHistory }}" style="font-size: var(--text-xs); color: var(--text-link); cursor: pointer;">See all</span>
         </div>
+        <sc-if value="{{ callsLoading }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--text-muted); padding: var(--space-4);">Loading…</div>
+        </sc-if>
+        <sc-if value="{{ hasCallsError }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--color-danger, #b3261e); padding: var(--space-4);">{{ callsError }}</div>
+        </sc-if>
         <div style="display: flex; flex-direction: column; gap: var(--space-2);">
           <sc-for list="{{ recentCalls }}" as="c" hint-placeholder-count="2">
             <div onClick="{{ c.open }}" style="display: flex; align-items: center; justify-content: space-between; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); cursor: pointer;">
@@ -285,6 +332,15 @@
       <section style="max-width: 720px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
         <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: 0 0 var(--space-6); letter-spacing: var(--tracking-tight);">Call history</h1>
 
+        <sc-if value="{{ callsLoading }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--text-muted); padding: var(--space-4);">Loading…</div>
+        </sc-if>
+        <sc-if value="{{ hasCallsError }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--color-danger, #b3261e); padding: var(--space-4);">{{ callsError }}</div>
+        </sc-if>
+        <sc-if value="{{ showEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--text-muted); padding: var(--space-4);">No calls logged yet. Start a call to create your first evidence file.</div>
+        </sc-if>
         <div style="display: flex; flex-direction: column; gap: var(--space-2);">
           <sc-for list="{{ allCalls }}" as="c" hint-placeholder-count="3">
             <div onClick="{{ c.open }}" style="display: flex; align-items: center; justify-content: space-between; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); cursor: pointer; gap: var(--space-3); flex-wrap: wrap;">
@@ -326,20 +382,30 @@ function fmtDate(ts) {
   var ampm = h >= 12 ? 'PM' : 'AM';
   var h12 = h % 12; if (h12 === 0) h12 = 12;
   var min = d.getMinutes();
-  return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' \u00b7 ' + h12 + ':' + (min < 10 ? '0' + min : '' + min) + ' ' + ampm;
+  return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' · ' + h12 + ':' + (min < 10 ? '0' + min : '' + min) + ' ' + ampm;
 }
 
-var STORAGE_KEY = 'wantworth_calls_v1';
+var API = 'https://wantworth-backend.onrender.com';
+var TOKEN_KEY = 'wantworth_token';
 
 class Component extends DCLogic {
   constructor(props) {
     super(props);
+    var token = null;
+    try { token = window.localStorage.getItem(TOKEN_KEY) || null; } catch (e) {}
     this.state = {
-      route: 'landing',
+      route: token ? 'home' : 'landing',
+      token: token,
+      phone: '',
+      otpCode: '',
+      authLoading: false,
+      authError: '',
       companyName: '',
       companyNumber: '',
       seconds: 0,
-      calls: this.loadCalls(),
+      calls: [],
+      callsLoading: false,
+      callsError: '',
       activeCallId: null
     };
     this.timerId = null;
@@ -356,26 +422,117 @@ class Component extends DCLogic {
     this.exportEvidence = this.exportEvidence.bind(this);
     this.onCompanyNameChange = this.onCompanyNameChange.bind(this);
     this.onCompanyNumberChange = this.onCompanyNumberChange.bind(this);
+    this.goApp = this.goApp.bind(this);
+    this.goPhone = this.goPhone.bind(this);
+    this.onPhoneChange = this.onPhoneChange.bind(this);
+    this.onOtpChange = this.onOtpChange.bind(this);
+    this.requestOtp = this.requestOtp.bind(this);
+    this.verifyOtp = this.verifyOtp.bind(this);
+    this.logout = this.logout.bind(this);
+    this.fetchCalls = this.fetchCalls.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.state.token) this.fetchCalls();
   }
 
   componentWillUnmount() {
     if (this.timerId) clearInterval(this.timerId);
   }
 
-  loadCalls() {
-    try {
-      var raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch (e) {}
-    var now = Date.now();
-    return [
-      { id: 'seed-1', company: 'Comcast Xfinity', number: '1 (800) 934-6489', durationSeconds: 23 * 60 + 14, timestamp: now - 86400000, sid: 'CA' + makeHex(4) + '...' + makeHex(4), hash: makeHex(6) + '...' + makeHex(4), status: 'secured' },
-      { id: 'seed-2', company: 'Delta Airlines', number: '1 (800) 221-1212', durationSeconds: 41 * 60 + 2, timestamp: now - 7 * 86400000, sid: 'CA' + makeHex(4) + '...' + makeHex(4), hash: makeHex(6) + '...' + makeHex(4), status: 'filed' }
-    ];
+  authHeaders() {
+    var h = { 'Content-Type': 'application/json' };
+    if (this.state.token) h['Authorization'] = 'Bearer ' + this.state.token;
+    return h;
   }
 
-  saveCalls(calls) {
-    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(calls)); } catch (e) {}
+  goApp() {
+    if (this.state.token) { this.setState({ route: 'home' }); this.fetchCalls(); }
+    else this.setState({ route: 'phone', authError: '' });
+  }
+
+  goPhone() { this.setState({ route: 'phone', authError: '', otpCode: '' }); }
+
+  onPhoneChange(e) { this.setState({ phone: e.target.value }); }
+  onOtpChange(e) { this.setState({ otpCode: e.target.value }); }
+
+  requestOtp() {
+    var self = this;
+    var phone = this.state.phone.trim();
+    if (!phone) return;
+    this.setState({ authLoading: true, authError: '' });
+    fetch(API + '/api/auth/request-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: phone })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('request_failed');
+      return r.json();
+    }).then(function () {
+      self.setState({ authLoading: false, route: 'otp', otpCode: '', authError: '' });
+    }).catch(function () {
+      self.setState({ authLoading: false, authError: 'Couldn’t send a code. Check the number and try again.' });
+    });
+  }
+
+  verifyOtp() {
+    var self = this;
+    var phone = this.state.phone.trim();
+    var code = this.state.otpCode.trim();
+    if (!phone || !code) return;
+    this.setState({ authLoading: true, authError: '' });
+    fetch(API + '/api/auth/verify-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: phone, code: code })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('verify_failed');
+      return r.json();
+    }).then(function (data) {
+      if (!data || !data.token) throw new Error('no_token');
+      try { window.localStorage.setItem(TOKEN_KEY, data.token); } catch (e) {}
+      self.setState({ token: data.token, authLoading: false, authError: '', otpCode: '', phone: '', route: 'home' });
+      self.fetchCalls();
+    }).catch(function () {
+      self.setState({ authLoading: false, authError: 'Wrong code, try again.' });
+    });
+  }
+
+  logout() {
+    try { window.localStorage.removeItem(TOKEN_KEY); } catch (e) {}
+    if (this.timerId) { clearInterval(this.timerId); this.timerId = null; }
+    this.setState({ token: null, calls: [], activeCallId: null, phone: '', otpCode: '', authError: '', callsError: '', route: 'landing' });
+  }
+
+  normalizeCall(c) {
+    return {
+      id: c.id,
+      company: c.company || 'Unknown company',
+      number: c.number || '—',
+      durationSeconds: c.duration_seconds != null ? c.duration_seconds : (c.durationSeconds || 0),
+      timestamp: c.timestamp,
+      sid: c.sid || '—',
+      hash: c.hash || '—',
+      status: c.status || 'secured'
+    };
+  }
+
+  fetchCalls() {
+    var self = this;
+    if (!this.state.token) return;
+    this.setState({ callsLoading: true, callsError: '' });
+    fetch(API + '/api/calls', { headers: this.authHeaders() }).then(function (r) {
+      if (r.status === 401) throw new Error('unauthorized');
+      if (!r.ok) throw new Error('load_failed');
+      return r.json();
+    }).then(function (data) {
+      var raw = (data && data.calls) || [];
+      var norm = raw.map(function (c) { return self.normalizeCall(c); });
+      self.setState({ calls: norm, callsLoading: false });
+    }).catch(function (err) {
+      if (err && err.message === 'unauthorized') { self.logout(); return; }
+      self.setState({ callsLoading: false, callsError: 'Couldn’t load your calls. Try again.' });
+    });
   }
 
   goLanding() { this.setState({ route: 'landing' }); }
@@ -395,11 +552,11 @@ class Component extends DCLogic {
 
   goEndCall() {
     if (this.timerId) { clearInterval(this.timerId); this.timerId = null; }
-    var id = 'call-' + Date.now();
+    var id = 'local-' + Date.now();
     var record = {
       id: id,
       company: this.state.companyName || 'Unknown company',
-      number: this.state.companyNumber || '\u2014',
+      number: this.state.companyNumber || '—',
       durationSeconds: this.state.seconds,
       timestamp: Date.now(),
       sid: 'CA' + makeHex(4) + '...' + makeHex(4),
@@ -407,7 +564,6 @@ class Component extends DCLogic {
       status: 'secured'
     };
     var calls = [record].concat(this.state.calls);
-    this.saveCalls(calls);
     this.setState({ calls: calls, activeCallId: id, route: 'newcall-ended' });
   }
 
@@ -415,28 +571,47 @@ class Component extends DCLogic {
   goClaim() { this.setState({ route: 'claim' }); }
 
   fileClaim() {
+    var self = this;
     var id = this.state.activeCallId;
-    var calls = this.state.calls.map(function (c) {
-      return c.id === id ? Object.assign({}, c, { status: 'filed' }) : c;
-    });
-    this.saveCalls(calls);
-    this.setState({ calls: calls, route: 'history' });
+    var apply = function () {
+      var calls = self.state.calls.map(function (c) {
+        return c.id === id ? Object.assign({}, c, { status: 'filed' }) : c;
+      });
+      self.setState({ calls: calls, route: 'history' });
+    };
+    var isLocal = id && id.indexOf('local-') === 0;
+    if (isLocal || !this.state.token) { apply(); return; }
+    fetch(API + '/api/calls/' + id, {
+      method: 'PATCH',
+      headers: this.authHeaders(),
+      body: JSON.stringify({ status: 'filed' })
+    }).then(function () { apply(); }).catch(function () { apply(); });
   }
 
   exportEvidence() {
     var call = this.findCall(this.state.activeCallId);
     if (!call) return;
-    try {
-      var blob = new Blob([JSON.stringify(call, null, 2)], { type: 'application/json' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'wantworth-evidence-' + call.id + '.json';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } catch (e) {}
+    var download = function (obj) {
+      try {
+        var blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'wantworth-evidence-' + call.id + '.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } catch (e) {}
+    };
+    var isLocal = call.id.indexOf('local-') === 0;
+    if (isLocal || !this.state.token) { download(call); return; }
+    fetch(API + '/api/calls/' + call.id + '/export', {
+      method: 'POST',
+      headers: this.authHeaders()
+    }).then(function (r) { return r.json(); }).then(function (data) {
+      download(data);
+    }).catch(function () { download(call); });
   }
 
   onCompanyNameChange(e) { this.setState({ companyName: e.target.value }); }
@@ -481,7 +656,9 @@ class Component extends DCLogic {
 
     return {
       isLanding: route === 'landing',
-      isApp: route !== 'landing',
+      isPhone: route === 'phone',
+      isOtp: route === 'otp',
+      isApp: route !== 'landing' && route !== 'phone' && route !== 'otp',
       isHome: route === 'home',
       isNewId: route === 'newcall-id',
       isNewMerge: route === 'newcall-merge',
@@ -502,6 +679,25 @@ class Component extends DCLogic {
       recentCalls: calls.slice(0, 2).map(function (c) { return this.decorateCall(c); }, this),
       allCalls: calls.map(function (c) { return this.decorateCall(c); }, this),
       activeCall: active ? this.decorateCall(active) : { company: '', durationLabel: '', dateLabel: '', sid: '', hash: '', evidenceId: '', tone: 'success', statusLabel: '', canFile: false },
+      phone: s.phone,
+      otpCode: s.otpCode,
+      onPhoneChange: this.onPhoneChange,
+      onOtpChange: this.onOtpChange,
+      authError: s.authError,
+      hasAuthError: !!s.authError,
+      phoneDisabled: !s.phone.trim() || s.authLoading,
+      otpDisabled: s.otpCode.trim().length < 4 || s.authLoading,
+      phoneBtnLabel: s.authLoading ? 'Sending code…' : 'Send code',
+      otpBtnLabel: s.authLoading ? 'Verifying…' : 'Verify & continue',
+      callsLoading: s.callsLoading,
+      callsError: s.callsError,
+      hasCallsError: !!s.callsError,
+      showEmpty: !s.callsLoading && !s.callsError && calls.length === 0,
+      goApp: this.goApp,
+      goPhone: this.goPhone,
+      requestOtp: this.requestOtp,
+      verifyOtp: this.verifyOtp,
+      logout: this.logout,
       goLanding: this.goLanding,
       goHome: this.goHome,
       goHistory: this.goHistory,
