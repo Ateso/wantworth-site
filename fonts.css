@@ -1,0 +1,9 @@
+/* ATESSO — Webfonts
+   These are Google Fonts substitutions:
+     • Montserrat    — geometric heavy display, approximates the ATESSO wordmark
+     • Hanken Grotesk — body / UI text
+     • JetBrains Mono — code & token specimens
+   If you have the original licensed brand faces, drop the binaries in assets/fonts/
+   and replace these @import lines with @font-face rules. */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');

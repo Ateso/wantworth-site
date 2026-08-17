@@ -1,0 +1,52 @@
+/* ATESSO — Spacing, radii, shadows, motion, layout
+   4px base grid. Soft, low-contrast shadows keep the friendly agency feel. */
+
+:root {
+  /* Spacing scale (4px base) */
+  --space-0:  0;
+  --space-1:  0.25rem;  /* 4  */
+  --space-2:  0.5rem;   /* 8  */
+  --space-3:  0.75rem;  /* 12 */
+  --space-4:  1rem;     /* 16 */
+  --space-5:  1.5rem;   /* 24 */
+  --space-6:  2rem;     /* 32 */
+  --space-7:  2.5rem;   /* 40 */
+  --space-8:  3rem;     /* 48 */
+  --space-9:  4rem;     /* 64 */
+  --space-10: 5rem;     /* 80 */
+  --space-11: 6rem;     /* 96 */
+  --space-12: 8rem;     /* 128 */
+
+  /* Radii */
+  --radius-xs:  4px;
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-2xl: 32px;
+  --radius-pill:999px;
+  --radius-circle: 50%;
+
+  /* Shadows — soft, tinted with warm neutral */
+  --shadow-xs: 0 1px 2px rgba(18, 20, 20, 0.06);
+  --shadow-sm: 0 1px 3px rgba(18, 20, 20, 0.08), 0 1px 2px rgba(18, 20, 20, 0.05);
+  --shadow-md: 0 4px 12px rgba(18, 20, 20, 0.08), 0 2px 4px rgba(18, 20, 20, 0.04);
+  --shadow-lg: 0 12px 28px rgba(18, 20, 20, 0.10), 0 4px 8px rgba(18, 20, 20, 0.05);
+  --shadow-xl: 0 24px 48px rgba(18, 20, 20, 0.14), 0 8px 16px rgba(18, 20, 20, 0.06);
+  --shadow-brand: 0 10px 24px rgba(109, 207, 181, 0.35);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */
+  --dur-fast: 120ms; /* @kind other */
+  --dur-base: 200ms; /* @kind other */
+  --dur-slow: 320ms; /* @kind other */
+
+  /* Layout */
+  --container-sm: 640px;
+  --container-md: 960px;
+  --container-lg: 1200px;
+  --container-xl: 1360px;
+  --border-width: 1px;
+}
