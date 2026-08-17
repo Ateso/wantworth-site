@@ -67,7 +67,7 @@
       </div>
       <div style="display: flex; align-items: center; gap: var(--space-4);">
         <span onClick="{{ logout }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">Log out</span>
-        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="primary" size="sm" onClick="{{ goNewCall }}">Start a call</x-import>
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="primary" size="sm" onClick="{{ goNewCall }}">Start</x-import>
       </div>
     </header>
   </sc-if>
@@ -79,18 +79,18 @@
       <section style="max-width: 720px; margin: 0 auto; padding: clamp(48px, 10vw, 96px) clamp(20px, 5vw, 24px) clamp(32px, 6vw, 56px); text-align: center;">
         <div style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-3);">Consumer time, recovered</div>
         <h1 style="font-family: var(--font-display); font-weight: var(--fw-black); text-transform: uppercase; letter-spacing: var(--tracking-tight); font-size: clamp(2rem, 6vw, var(--text-3xl)); color: var(--text-strong); margin: 0 0 var(--space-5); line-height: var(--leading-tight);">Wasted hold time.<br>Actual compensation.</h1>
-        <p style="font-size: var(--text-lg); color: var(--text-body); margin: 0 0 var(--space-7); line-height: var(--leading-relaxed);">Merge Wantworth into your next customer service call. We record it with disclosed consent, timestamp what happened, and package the evidence to help you file a small claim.</p>
+        <p style="font-size: var(--text-lg); color: var(--text-body); margin: 0 0 var(--space-7); line-height: var(--leading-relaxed);">Merge Wantworth into your next customer service call, or time an online chat. We log what happened and package the evidence to help you file a small claim.</p>
         <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,52px" variant="primary" size="lg" onClick="{{ goApp }}">Get started</x-import>
       </section>
 
       <section style="max-width: 1000px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 24px) clamp(64px, 10vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5);">
         <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-6);">
-          <div style="font-family: var(--font-display); font-weight: var(--fw-extra); font-size: var(--text-md); text-transform: uppercase; color: var(--text-strong); margin-bottom: var(--space-2);">1. Merge in</div>
-          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0; line-height: var(--leading-relaxed);">Add our number to your call with your phone's normal merge-call feature. Everyone hears a recording disclosure.</p>
+          <div style="font-family: var(--font-display); font-weight: var(--fw-extra); font-size: var(--text-md); text-transform: uppercase; color: var(--text-strong); margin-bottom: var(--space-2);">1. Merge in or time it</div>
+          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0; line-height: var(--leading-relaxed);">Add our number to a phone call with your phone's normal merge-call feature, or start a timer for an online chat.</p>
         </div>
         <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-6);">
           <div style="font-family: var(--font-display); font-weight: var(--fw-extra); font-size: var(--text-md); text-transform: uppercase; color: var(--text-strong); margin-bottom: var(--space-2);">2. We log it</div>
-          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0; line-height: var(--leading-relaxed);">Duration, company, and a hash of the recording are saved the moment the call ends. Nothing after is edited.</p>
+          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0; line-height: var(--leading-relaxed);">Duration, company, and a hash of the recording or transcript are saved the moment you're done. Nothing after is edited.</p>
         </div>
         <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-6);">
           <div style="font-family: var(--font-display); font-weight: var(--fw-extra); font-size: var(--text-md); text-transform: uppercase; color: var(--text-strong); margin-bottom: var(--space-2);">3. You file</div>
@@ -123,7 +123,7 @@
       <section style="max-width: 440px; margin: 0 auto; padding: clamp(48px, 10vw, 96px) clamp(20px, 5vw, 24px);">
         <span onClick="{{ goPhone }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">&lsaquo; Back</span>
         <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: var(--space-3) 0 var(--space-2); letter-spacing: var(--tracking-tight);">Enter code</h1>
-        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">We sent a 6-digit code to {{ phone }}.</p>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">We sent a 6-digit code to {{ phone }}. It can take 1–3 minutes to arrive, so hang tight.</p>
 
         <div style="margin-bottom: var(--space-4);">
           <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Input" hint-size="100%,72px" label="Verification code" placeholder="000000" value="{{ otpCode }}" onChange="{{ onOtpChange }}"></x-import>
@@ -144,10 +144,10 @@
 
         <div style="background: var(--surface-brand); border-radius: var(--radius-xl); padding: var(--space-6); margin-bottom: var(--space-6); box-shadow: var(--shadow-brand); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5);">
           <div style="max-width: 420px;">
-            <div style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-on-primary); opacity: 0.75; margin-bottom: var(--space-2);">New recording</div>
-            <div style="font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--color-on-primary);">Merge us into your support call and we'll log everything.</div>
+            <div style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-on-primary); opacity: 0.75; margin-bottom: var(--space-2);">New evidence</div>
+            <div style="font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--color-on-primary);">Merge a call or time a chat, and we'll log everything.</div>
           </div>
-          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,48px" variant="secondary" onClick="{{ goNewCall }}">Start a call</x-import>
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,48px" variant="secondary" onClick="{{ goNewCall }}">Start</x-import>
         </div>
 
         <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-7); flex-wrap: wrap;">
@@ -176,7 +176,7 @@
             <div onClick="{{ c.open }}" style="display: flex; align-items: center; justify-content: space-between; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); cursor: pointer;">
               <div>
                 <div style="font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-strong);">{{ c.company }}</div>
-                <div style="font-size: var(--text-xs); color: var(--text-muted);">{{ c.dateLabel }} &middot; {{ c.durationLabel }}</div>
+                <div style="font-size: var(--text-xs); color: var(--text-muted);">{{ c.dateLabel }} &middot; {{ c.durationLabel }} &middot; {{ c.typeLabel }}</div>
               </div>
               <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,24px" tone="{{ c.tone }}">{{ c.statusLabel }}</x-import>
             </div>
@@ -189,15 +189,22 @@
     <sc-if value="{{ isNewId }}" hint-placeholder-val="{{ false }}">
       <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
         <span onClick="{{ goHome }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">&lsaquo; Cancel</span>
-        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: var(--space-3) 0 var(--space-2); letter-spacing: var(--tracking-tight);">Who are you calling?</h1>
-        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">We'll use this to identify the company on your evidence file.</p>
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-2xl); color: var(--text-strong); margin: var(--space-3) 0 var(--space-2); letter-spacing: var(--tracking-tight);">How are you reaching them?</h1>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-5);">We'll use this to identify the company on your evidence file.</p>
+
+        <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-6);">
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="{{ phoneTypeVariant }}" onClick="{{ selectPhoneType }}">Phone call</x-import>
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,40px" variant="{{ chatTypeVariant }}" onClick="{{ selectChatType }}">Online chat</x-import>
+        </div>
 
         <div style="display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-7);">
           <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Input" hint-size="100%,72px" label="Company name" placeholder="e.g. Comcast Xfinity" value="{{ companyName }}" onChange="{{ onCompanyNameChange }}"></x-import>
-          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Input" hint-size="100%,72px" label="Support number" placeholder="e.g. 1 (800) 934-6489" hint="Matched from our directory of published support lines" value="{{ companyNumber }}" onChange="{{ onCompanyNumberChange }}"></x-import>
+          <sc-if value="{{ isPhoneType }}" hint-placeholder-val="{{ true }}">
+            <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Input" hint-size="100%,72px" label="Support number" placeholder="e.g. 1 (800) 934-6489" hint="Matched from our directory of published support lines" value="{{ companyNumber }}" onChange="{{ onCompanyNumberChange }}"></x-import>
+          </sc-if>
         </div>
 
-        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" disabled="{{ idDisabled }}" onClick="{{ goMerge }}">Continue</x-import>
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" disabled="{{ idDisabled }}" onClick="{{ goNewIdContinue }}">Continue</x-import>
       </section>
     </sc-if>
 
@@ -262,13 +269,52 @@
       </section>
     </sc-if>
 
+    <!-- NEW CHAT: timer -->
+    <sc-if value="{{ isNewChatRecording }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+          <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,24px" tone="danger" dot="{{ true }}">Timing</x-import>
+          <div style="font-family: var(--font-mono); font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--text-strong);">{{ timerDisplay }}</div>
+        </div>
+
+        <div style="font-size: var(--text-sm); color: var(--text-strong); font-weight: var(--fw-medium);">{{ companyName }}</div>
+        <div style="font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-6);">Online chat</div>
+
+        <div style="background: var(--surface-sunken); border-radius: var(--radius-lg); padding: var(--space-4); font-size: var(--text-xs); color: var(--text-body); margin-bottom: var(--space-7);">Wantworth is timing this session &mdash; it can't see or capture the chat itself. Keep the chat window open until you're done, then end here.</div>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="danger" block="{{ true }}" onClick="{{ goChatEndRecording }}">End chat &amp; continue</x-import>
+      </section>
+    </sc-if>
+
+    <!-- NEW CHAT: save + transcript reminder -->
+    <sc-if value="{{ isNewChatSave }}" hint-placeholder-val="{{ false }}">
+      <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
+        <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-xl); color: var(--text-strong); margin: 0 0 var(--space-2); letter-spacing: var(--tracking-tight);">Save your chat</h1>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-5);">Wantworth logged {{ timerDisplay }} with {{ companyName }}. Before you close that chat window, save or download the transcript &mdash; most support chats let you email or download it. Attach it here if you have it.</p>
+
+        <div style="margin-bottom: var(--space-4);">
+          <input type="file" accept=".txt,.pdf,.png,.jpg,.jpeg" onChange="{{ onChatFileChange }}" style="font-size: 13px; color: var(--text-body); font-family: var(--font-sans);" />
+        </div>
+
+        <sc-if value="{{ hasChatFile }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--text-strong); margin-bottom: var(--space-4);">Attached: {{ chatFileName }}</div>
+        </sc-if>
+
+        <sc-if value="{{ hasChatError }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: var(--text-sm); color: var(--color-danger, #b3261e); margin-bottom: var(--space-4);">{{ chatError }}</div>
+        </sc-if>
+
+        <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Button" hint-size="auto,44px" variant="primary" block="{{ true }}" disabled="{{ chatSaving }}" onClick="{{ saveChatEvidence }}">{{ chatSaveBtnLabel }}</x-import>
+      </section>
+    </sc-if>
+
     <!-- NEW CALL: ended -->
     <sc-if value="{{ isNewEnded }}" hint-placeholder-val="{{ false }}">
       <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
         <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: var(--space-7);">
           <div style="width: 64px; height: 64px; border-radius: var(--radius-circle); background: var(--color-primary-subtle); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-5); font-size: 28px; color: var(--color-primary-active);">&#10003;</div>
           <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-xl); color: var(--text-strong); margin: 0 0 var(--space-2); letter-spacing: var(--tracking-tight);">Evidence secured</h1>
-          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0;">Your call was recorded, hashed, and saved to your Wantworth account.</p>
+          <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0;">Saved to your Wantworth account.</p>
         </div>
 
         <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-7);">
@@ -289,13 +335,17 @@
           <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-lg); color: var(--text-strong); margin: 0; letter-spacing: var(--tracking-tight);">Evidence {{ activeCall.evidenceId }}</h1>
           <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,24px" tone="success">Hash verified</x-import>
         </div>
-        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-5);">Original recording, untouched since capture, and saved securely in your Wantworth account. Nothing has been sent to PettyLawsuit yet.</p>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-5);">Untouched since capture, and saved securely in your Wantworth account. Nothing has been sent to PettyLawsuit yet.</p>
 
         <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5);">
+          <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Type</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.typeLabel }}</span></div>
           <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Call SID</span><span style="color: var(--text-strong); font-family: var(--font-mono); font-size: var(--text-xs);">{{ activeCall.sid }}</span></div>
           <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">SHA-256</span><span style="color: var(--text-strong); font-family: var(--font-mono); font-size: var(--text-xs);">{{ activeCall.hash }}</span></div>
           <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Company</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.company }}</span></div>
           <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Duration</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.durationLabel }}</span></div>
+          <sc-if value="{{ activeCall.hasTranscript }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Transcript</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.transcriptFilename }} (in export)</span></div>
+          </sc-if>
           <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Status</span><x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,22px" tone="{{ activeCall.tone }}">{{ activeCall.statusLabel }}</x-import></div>
         </div>
 
@@ -313,7 +363,7 @@
       <section style="max-width: 480px; margin: 0 auto; padding: clamp(24px, 5vw, 48px) clamp(20px, 5vw, 24px);">
         <span onClick="{{ goEvidence }}" style="font-size: var(--text-sm); color: var(--text-muted); cursor: pointer;">&lsaquo; Back</span>
         <h1 style="font-family: var(--font-display); font-weight: var(--fw-extra); text-transform: uppercase; font-size: var(--text-xl); color: var(--text-strong); margin: var(--space-3) 0 var(--space-2); letter-spacing: var(--tracking-tight);">Take this to PettyLawsuit</h1>
-        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">Wantworth doesn't file with PettyLawsuit automatically yet. Your evidence is saved securely in your Wantworth account — export it below, then start your claim directly on PettyLawsuit's site.</p>
+        <p style="font-size: var(--text-sm); color: var(--text-body); margin: 0 0 var(--space-6);">Wantworth doesn't file with PettyLawsuit automatically yet. Your evidence is saved securely in your Wantworth account &mdash; export it below, then start your claim directly on PettyLawsuit's site.</p>
 
         <div style="background: var(--surface-sunken); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6);">
           <div style="display: flex; justify-content: space-between; font-size: var(--text-sm);"><span style="color: var(--text-muted);">Evidence file</span><span style="color: var(--text-strong); font-weight: var(--fw-medium);">{{ activeCall.evidenceId }}</span></div>
@@ -356,14 +406,14 @@
           <div style="font-size: var(--text-sm); color: var(--color-danger, #b3261e); padding: var(--space-4);">{{ callsError }}</div>
         </sc-if>
         <sc-if value="{{ showEmpty }}" hint-placeholder-val="{{ false }}">
-          <div style="font-size: var(--text-sm); color: var(--text-muted); padding: var(--space-4);">No calls logged yet. Start a call to create your first evidence file.</div>
+          <div style="font-size: var(--text-sm); color: var(--text-muted); padding: var(--space-4);">No calls logged yet. Start a call or chat to create your first evidence file.</div>
         </sc-if>
         <div style="display: flex; flex-direction: column; gap: var(--space-2);">
           <sc-for list="{{ allCalls }}" as="c" hint-placeholder-count="3">
             <div onClick="{{ c.open }}" style="display: flex; align-items: center; justify-content: space-between; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); cursor: pointer; gap: var(--space-3); flex-wrap: wrap;">
               <div>
                 <div style="font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--text-strong);">{{ c.company }}</div>
-                <div style="font-size: var(--text-xs); color: var(--text-muted);">{{ c.dateLabel }} &middot; {{ c.durationLabel }} &middot; {{ c.number }}</div>
+                <div style="font-size: var(--text-xs); color: var(--text-muted);">{{ c.dateLabel }} &middot; {{ c.durationLabel }} &middot; {{ c.typeLabel }}</div>
               </div>
               <x-import component-from-global-scope="ATESSODesignSystem_bbf0b0.Badge" hint-size="auto,24px" tone="{{ c.tone }}">{{ c.statusLabel }}</x-import>
             </div>
@@ -419,11 +469,16 @@ class Component extends DCLogic {
       authError: '',
       companyName: '',
       companyNumber: '',
+      callType: 'phone',
       seconds: 0,
       calls: [],
       callsLoading: false,
       callsError: '',
-      activeCallId: null
+      activeCallId: null,
+      chatFileName: '',
+      chatFileData: '',
+      chatSaving: false,
+      chatError: ''
     };
     this.timerId = null;
     this.goLanding = this.goLanding.bind(this);
@@ -447,6 +502,13 @@ class Component extends DCLogic {
     this.verifyOtp = this.verifyOtp.bind(this);
     this.logout = this.logout.bind(this);
     this.fetchCalls = this.fetchCalls.bind(this);
+    this.selectPhoneType = this.selectPhoneType.bind(this);
+    this.selectChatType = this.selectChatType.bind(this);
+    this.goNewIdContinue = this.goNewIdContinue.bind(this);
+    this.goChatRecording = this.goChatRecording.bind(this);
+    this.goChatEndRecording = this.goChatEndRecording.bind(this);
+    this.onChatFileChange = this.onChatFileChange.bind(this);
+    this.saveChatEvidence = this.saveChatEvidence.bind(this);
   }
 
   componentDidMount() {
@@ -530,7 +592,10 @@ class Component extends DCLogic {
       timestamp: c.timestamp,
       sid: c.sid || '—',
       hash: c.hash || '—',
-      status: c.status || 'secured'
+      status: c.status || 'secured',
+      type: c.type || 'phone',
+      transcriptFilename: c.transcript_filename || null,
+      hasTranscript: !!(c.has_transcript || c.transcript_data)
     };
   }
 
@@ -555,7 +620,23 @@ class Component extends DCLogic {
   goLanding() { this.setState({ route: 'landing' }); }
   goHome() { this.setState({ route: 'home' }); }
   goHistory() { this.setState({ route: 'history' }); }
-  goNewCall() { this.setState({ route: 'newcall-id', companyName: '', companyNumber: '' }); }
+  goNewCall() {
+    this.setState({
+      route: 'newcall-id',
+      companyName: '',
+      companyNumber: '',
+      callType: 'phone',
+      chatFileName: '',
+      chatFileData: '',
+      chatError: ''
+    });
+  }
+  selectPhoneType() { this.setState({ callType: 'phone' }); }
+  selectChatType() { this.setState({ callType: 'chat' }); }
+  goNewIdContinue() {
+    if (this.state.callType === 'chat') this.goChatRecording();
+    else this.goMerge();
+  }
   goMerge() { this.setState({ route: 'newcall-merge' }); }
 
   goRecording() {
@@ -565,6 +646,74 @@ class Component extends DCLogic {
     this.timerId = setInterval(function () {
       self.setState(function (s) { return { seconds: s.seconds + 1 }; });
     }, 1000);
+  }
+
+  goChatRecording() {
+    var self = this;
+    this.setState({ route: 'newcall-chat-recording', seconds: 0 });
+    if (this.timerId) clearInterval(this.timerId);
+    this.timerId = setInterval(function () {
+      self.setState(function (s) { return { seconds: s.seconds + 1 }; });
+    }, 1000);
+  }
+
+  goChatEndRecording() {
+    if (this.timerId) { clearInterval(this.timerId); this.timerId = null; }
+    this.setState({ route: 'newcall-chat-save' });
+  }
+
+  onChatFileChange(e) {
+    var self = this;
+    var file = e.target.files && e.target.files[0];
+    if (!file) { this.setState({ chatFileName: '', chatFileData: '' }); return; }
+    if (file.size > 5 * 1024 * 1024) {
+      this.setState({ chatError: 'That file is too big (max 5MB).' });
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function () {
+      self.setState({ chatFileName: file.name, chatFileData: reader.result, chatError: '' });
+    };
+    reader.onerror = function () {
+      self.setState({ chatError: 'Couldn’t read that file, try again.' });
+    };
+    reader.readAsDataURL(file);
+  }
+
+  saveChatEvidence() {
+    var self = this;
+    this.setState({ chatSaving: true, chatError: '' });
+    var body = {
+      type: 'chat',
+      company: this.state.companyName,
+      duration_seconds: this.state.seconds
+    };
+    if (this.state.chatFileData) {
+      body.transcript_filename = this.state.chatFileName;
+      body.transcript_data = this.state.chatFileData;
+    }
+    fetch(API + '/api/calls', {
+      method: 'POST',
+      headers: this.authHeaders(),
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('save_failed');
+      return r.json();
+    }).then(function (data) {
+      var call = self.normalizeCall(data.call);
+      var calls = [call].concat(self.state.calls);
+      self.setState({
+        calls: calls,
+        activeCallId: call.id,
+        chatSaving: false,
+        chatFileName: '',
+        chatFileData: '',
+        seconds: 0,
+        route: 'newcall-ended'
+      });
+    }).catch(function () {
+      self.setState({ chatSaving: false, chatError: 'Couldn’t save this evidence. Check your connection and try again.' });
+    });
   }
 
   goEndCall() {
@@ -578,7 +727,10 @@ class Component extends DCLogic {
       timestamp: Date.now(),
       sid: 'CA' + makeHex(4) + '...' + makeHex(4),
       hash: makeHex(6) + '...' + makeHex(4),
-      status: 'secured'
+      status: 'secured',
+      type: 'phone',
+      transcriptFilename: null,
+      hasTranscript: false
     };
     var calls = [record].concat(this.state.calls);
     this.setState({ calls: calls, activeCallId: id, route: 'newcall-ended' });
@@ -644,6 +796,7 @@ class Component extends DCLogic {
     var self = this;
     var tone = c.status === 'filed' ? 'brand' : 'success';
     var label = c.status === 'filed' ? 'Marked filed by you' : 'Evidence secured';
+    var typeLabel = c.type === 'chat' ? 'Online chat' : 'Phone call';
     return {
       id: c.id,
       company: c.company,
@@ -656,6 +809,9 @@ class Component extends DCLogic {
       tone: tone,
       statusLabel: label,
       canFile: c.status !== 'filed',
+      typeLabel: typeLabel,
+      hasTranscript: !!c.hasTranscript,
+      transcriptFilename: c.transcriptFilename,
       open: function () { self.setState({ activeCallId: c.id, route: 'evidence' }); }
     };
   }
@@ -680,6 +836,8 @@ class Component extends DCLogic {
       isNewId: route === 'newcall-id',
       isNewMerge: route === 'newcall-merge',
       isNewRecording: route === 'newcall-recording',
+      isNewChatRecording: route === 'newcall-chat-recording',
+      isNewChatSave: route === 'newcall-chat-save',
       isNewEnded: route === 'newcall-ended',
       isEvidence: route === 'evidence',
       isClaim: route === 'claim',
@@ -690,12 +848,18 @@ class Component extends DCLogic {
       companyNumber: s.companyNumber,
       onCompanyNameChange: this.onCompanyNameChange,
       onCompanyNumberChange: this.onCompanyNumberChange,
-      idDisabled: !(s.companyName.trim() && s.companyNumber.trim()),
+      isPhoneType: s.callType !== 'chat',
+      phoneTypeVariant: s.callType !== 'chat' ? 'primary' : 'outline',
+      chatTypeVariant: s.callType === 'chat' ? 'primary' : 'outline',
+      selectPhoneType: this.selectPhoneType,
+      selectChatType: this.selectChatType,
+      goNewIdContinue: this.goNewIdContinue,
+      idDisabled: s.callType === 'chat' ? !s.companyName.trim() : !(s.companyName.trim() && s.companyNumber.trim()),
       timerDisplay: fmtDuration(s.seconds),
       stats: { logged: logged, filed: filed },
       recentCalls: calls.slice(0, 2).map(function (c) { return this.decorateCall(c); }, this),
       allCalls: calls.map(function (c) { return this.decorateCall(c); }, this),
-      activeCall: active ? this.decorateCall(active) : { company: '', durationLabel: '', dateLabel: '', sid: '', hash: '', evidenceId: '', tone: 'success', statusLabel: '', canFile: false },
+      activeCall: active ? this.decorateCall(active) : { company: '', durationLabel: '', dateLabel: '', sid: '', hash: '', evidenceId: '', tone: 'success', statusLabel: '', canFile: false, typeLabel: '', hasTranscript: false, transcriptFilename: '' },
       phone: s.phone,
       otpCode: s.otpCode,
       onPhoneChange: this.onPhoneChange,
@@ -722,6 +886,15 @@ class Component extends DCLogic {
       goMerge: this.goMerge,
       goRecording: this.goRecording,
       goEndCall: this.goEndCall,
+      goChatEndRecording: this.goChatEndRecording,
+      onChatFileChange: this.onChatFileChange,
+      saveChatEvidence: this.saveChatEvidence,
+      hasChatFile: !!s.chatFileName,
+      chatFileName: s.chatFileName,
+      hasChatError: !!s.chatError,
+      chatError: s.chatError,
+      chatSaving: s.chatSaving,
+      chatSaveBtnLabel: s.chatSaving ? 'Saving…' : (s.chatFileName ? 'Save evidence' : 'Save without transcript'),
       goEvidence: this.goEvidence,
       goClaim: this.goClaim,
       fileClaim: this.fileClaim,
